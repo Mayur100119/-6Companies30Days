@@ -1,0 +1,25 @@
+class Solution {
+public:
+    void combination(vector<vector<int>>& result, vector<int> number, int k, int n) {
+    if (number.size() == k && n == 0) { 
+        result.push_back(number);
+        return ; 
+    }
+    if (number.size() < k) {
+        for (int i = number.empty() ? 1 : number.back() + 1; i <= 9; ++i) {
+            if (n - i < 0) 
+                break;
+            number.push_back(i);
+            combination(result, number, k, n - i);
+            number.pop_back();
+        }
+    }
+  }
+
+  vector<vector<int>> combinationSum3(int k, int n) {
+    vector<vector<int>> result;
+    vector<int> number;
+    combination(result, number, k, n);
+    return result;
+  }
+};
